@@ -34,23 +34,30 @@ let hashGame = new Vue({
             });
         },
         playerSelectPlace (place) {
-            console.log(this.whoPlay.name+" fez sua jogada!");
-            this.$set(this.places, place, this.whoPlay.cursor);
-            let winner = this.checkIfHasWiner();
-            if (winner.status) {
-                this.players.map((player, index)=>{
-                    if (player.name == winner.player.name) {
-                        player.points++;
-                    }
-                });
+
+            if (this.places[place] != 0) {
+                console.log(this.whoPlay.name+" você não pode jogar aqui!");
+                alert(this.whoPlay.name+" você não pode jogar aqui!");
             } else {
-                if (this.verifyDraw()) {
-                    console.log("Deu velha!");
-                    this.draw = true;
+                console.log(this.whoPlay.name+" fez sua jogada!");
+                this.$set(this.places, place, this.whoPlay.cursor);
+                let winner = this.checkIfHasWiner();
+                if (winner.status) {
+                    this.players.map((player, index)=>{
+                        if (player.name == winner.player.name) {
+                            player.points++;
+                        }
+                    });
                 } else {
-                    this.nextPlayer();
+                    if (this.verifyDraw()) {
+                        console.log("Deu velha!");
+                        this.draw = true;
+                    } else {
+                        this.nextPlayer();
+                    }
                 }
             }
+            
         },
         checkIfHasWiner () {
             console.log("Verificando se já existe um ganhador...");
