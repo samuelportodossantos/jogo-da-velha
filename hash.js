@@ -17,7 +17,8 @@ let hashGame = new Vue({
             [6, 4, 2],
             [0, 4, 8]
         ],
-        winner: false
+        winner: false,
+        draw: false
     },
     mounted (){
         this.randomStarter();
@@ -43,7 +44,12 @@ let hashGame = new Vue({
                     }
                 });
             } else {
-                this.nextPlayer();
+                if (this.verifyDraw()) {
+                    console.log("Deu velha!");
+                    this.draw = true;
+                } else {
+                    this.nextPlayer();
+                }
             }
         },
         checkIfHasWiner () {
@@ -68,6 +74,15 @@ let hashGame = new Vue({
             });
             return winner;
         },
+        verifyDraw () {
+            let draw = true;
+            this.places.map((e, i)=>{
+                if (e == 0) {
+                    draw = false;
+                }
+            });
+            return draw;
+        },
         nextPlayer () {
             this.players.map((e, i)=>{
                 if (this.whoPlay.name != e.name) {
@@ -80,6 +95,7 @@ let hashGame = new Vue({
         },
         continueGame () {
             this.winner = false;
+            this.draw = false;
             this.resetGame();
             this.randomStarter();
         }

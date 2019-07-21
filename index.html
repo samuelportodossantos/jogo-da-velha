@@ -25,9 +25,13 @@
         </div>
         
         <!-- Mensagens do jogo -->
-        <div id="winnerMessage" :class="winner ? 'show' : ''">
-            <span>
+        <div id="winnerMessage" :class="winner || draw ? 'show' : ''">
+            <span v-show="winner == true && draw == false">
                 Parabéns {{ whoPlay.name }} você venceu!<br>
+                <button @click="continueGame()">Continuar!</button>
+            </span>
+            <span v-show="draw == true && winner == false">
+                Deu velha!<br>
                 <button @click="continueGame()">Continuar!</button>
             </span>
         </div>
@@ -35,7 +39,7 @@
         <!-- Ranking da jogatina -->
         <div id="ranking">
             <h2>Vitórias</h2>
-            <p v-for="player in players"> <strong>{{ player.name }}</strong> - {{player.points}}</p>
+            <p v-for="player in players"> <strong>{{ player.name }}</strong>  {{player.points}}</p>
         </div>
 
     </div>
