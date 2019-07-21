@@ -1,0 +1,77 @@
+*{padding: 0; margin: 0; box-sizing: border-box;font-family: 'Lato', sans-serif;}
+#board{
+    width: 400px;
+    height: 400px;
+    background: #EEE;
+    border: 2px solid #09f;
+    margin: 15vh auto 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.places{
+    position: relative;
+    flex-basis: 33.33%;
+    padding-bottom: 32.33%;
+    border: 2px solid #09f;
+    cursor: pointer;
+}
+.places:hover{
+    background: rgba(255,255,255,.7);
+}
+.game-piece {
+    position: absolute;
+    font-size: 4em;
+    left: 33%;
+    top: 20%;
+}
+#playerOfTime {
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 30px;
+    font-size: 2em;
+    color: green;
+}
+#winnerMessage {
+    position: fixed;
+    transition: .3s;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.7);
+    top: -100vh;
+    left: 0;
+}
+#winnerMessage.show {
+    top: 0;
+}
+#winnerMessage span {
+    color: #FFF;
+    margin: 25vh auto 0 auto;
+    display: block;
+    width: 50vw;
+    text-align: center;
+    font-size: 4em;
+}
+#winnerMessage button {
+    color: #FFF;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;    
+    background: #09f;
+    text-align: center;
+    font-size: 0.5em;
+    transition: .3s;
+}
+#winnerMessage button:hover {
+    background: #59f;
+}
+
+#ranking {
+    display: block;
+    width: max-content;
+    position: fixed;
+    right: 100px;
+    top: 15vh;
+    color: green;
+}

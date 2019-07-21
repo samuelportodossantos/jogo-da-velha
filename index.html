@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="hash.css">
+    <title>Hash</title>
+</head>
+<body>
+    <div id="hash">
+        
+        <!-- Board do jogo -->
+        <div>
+            <span id="playerOfTime">É a vez de {{ whoPlay.name }} jogar</span>
+            <div id="board">
+                <div v-for="(place, index) in places" class="places" v-on:click="playerSelectPlace(index)">
+                    <span class="game-piece">
+                        <span v-show="place == 1">O</span>
+                        <span v-show="place == 2">X</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mensagens do jogo -->
+        <div id="winnerMessage" :class="winner ? 'show' : ''">
+            <span>
+                Parabéns {{ whoPlay.name }} você venceu!<br>
+                <button @click="continueGame()">Continuar!</button>
+            </span>
+        </div>
+
+        <!-- Ranking da jogatina -->
+        <div id="ranking">
+            <h2>Vitórias</h2>
+            <p v-for="player in players"> <strong>{{ player.name }}</strong> - {{player.points}}</p>
+        </div>
+
+    </div>
+    <script src="hash.js"></script>
+</body>
+</html>
